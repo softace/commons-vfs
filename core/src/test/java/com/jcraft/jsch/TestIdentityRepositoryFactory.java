@@ -24,7 +24,7 @@ import org.apache.commons.vfs2.provider.sftp.IdentityRepositoryFactory;
  * This class is packaged in {@code com.jcraft.jsch} because {@code com.jcraft.jsch.LocalIdentityRepository} is
  * declared with default scope.
  *
- * @version $Id$
+ * @version $Id: TestIdentityRepositoryFactory.java 1416507 2012-12-03 13:37:12Z ggregory $
  */
 public class TestIdentityRepositoryFactory implements IdentityRepositoryFactory
 {

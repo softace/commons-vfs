@@ -22,7 +22,7 @@ import com.jcraft.jsch.JSch;
 /**
  * Creates instances of JSch {@link IdentityRepository}.
  *
- * @version $Id$
+ * @version $Id: IdentityRepositoryFactory.java 1451595 2013-03-01 14:09:21Z joehni $
  */
 public interface IdentityRepositoryFactory
 {

@@ -25,7 +25,7 @@ import org.apache.commons.vfs2.util.RandomAccessMode;
 /**
  * Random read and write test case for file providers.
  *
- * @version $Id$
+ * @version $Id: ProviderRandomReadWriteTests.java 1416507 2012-12-03 13:37:12Z ggregory $
  */
 public class ProviderRandomReadWriteTests
     extends AbstractProviderTestCase

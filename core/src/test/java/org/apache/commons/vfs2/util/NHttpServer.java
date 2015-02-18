@@ -102,7 +102,7 @@ import org.apache.http.protocol.ResponseServer;
  * demonstrate the most efficient way of building an HTTP server.
  * </p>
  *
- * @version $Id$
+ * @version $Id: NHttpServer.java 1352244 2012-06-20 18:05:11Z ggregory $
  * @since 2.1
  */
 public class NHttpServer

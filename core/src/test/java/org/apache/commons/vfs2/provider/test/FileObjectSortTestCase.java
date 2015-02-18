@@ -31,7 +31,7 @@ import org.junit.Test;
 /**
  * Tests FileObject sorting.
  *
- * $Id$
+ * $Id: FileObjectSortTestCase.java 1416507 2012-12-03 13:37:12Z ggregory $
  */
 public class FileObjectSortTestCase {
 

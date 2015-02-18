@@ -21,7 +21,7 @@ import org.junit.Test;
 
 /**
  *
- * @version $Id$
+ * @version $Id: UriParserTestCase.java 1546274 2013-11-28 03:48:11Z ggregory $
  */
 public class UriParserTestCase
 {

@@ -28,7 +28,7 @@ import org.junit.Test;
 /**
  * Tests https://issues.apache.org/jira/browse/VFS-426
  *
- * @version $Id$
+ * @version $Id: HttpFilesCacheTestCase.java 1546274 2013-11-28 03:48:11Z ggregory $
  * @since 2.1
  */
 public class HttpFilesCacheTestCase extends TestCase

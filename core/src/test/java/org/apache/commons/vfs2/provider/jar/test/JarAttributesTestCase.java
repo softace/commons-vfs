@@ -28,7 +28,7 @@ import org.junit.Test;
 /**
  * Tests JAR attributes.
  *
- * @version $Id$
+ * @version $Id: JarAttributesTestCase.java 1546274 2013-11-28 03:48:11Z ggregory $
  */
 public class JarAttributesTestCase extends TestCase
 {
