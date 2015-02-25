@@ -16,8 +16,8 @@
  */
 package org.apache.commons.vfs2.provider;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.vfs2.FileName;
 import org.apache.commons.vfs2.FileObject;
@@ -43,8 +43,8 @@ public abstract class AbstractFileProvider
      * This is a mapping from {@link FileSystemKey} (root URI and options)
      * to {@link FileSystem}.
      */
-    private final Map<FileSystemKey, FileSystem> fileSystems
-            = new TreeMap<FileSystemKey, FileSystem>(); // @GuardedBy("self")
+    private final ConcurrentMap<FileSystemKey, FileSystem> fileSystems
+            = new ConcurrentHashMap<FileSystemKey, FileSystem>();
 
     private FileNameParser parser;
 
@@ -69,10 +69,7 @@ public abstract class AbstractFileProvider
     @Override
     public void close()
     {
-        synchronized (fileSystems)
-        {
-            fileSystems.clear();
-        }
+        fileSystems.clear();
 
         super.close();
     }
@@ -110,10 +107,7 @@ public abstract class AbstractFileProvider
         final FileSystemKey treeKey = new FileSystemKey(key, fs.getFileSystemOptions());
         ((AbstractFileSystem) fs).setCacheKey(treeKey);
 
-        synchronized (fileSystems)
-        {
-            fileSystems.put(treeKey, fs);
-        }
+        fileSystems.put(treeKey, fs);
     }
 
     /**
@@ -127,10 +121,7 @@ public abstract class AbstractFileProvider
     {
         final FileSystemKey treeKey = new FileSystemKey(key, fileSystemProps);
 
-        synchronized (fileSystems)
-        {
-            return fileSystems.get(treeKey);
-        }
+        return fileSystems.get(treeKey);
     }
 
     /**
@@ -148,15 +139,7 @@ public abstract class AbstractFileProvider
      */
     public void freeUnusedResources()
     {
-        AbstractFileSystem[] abstractFileSystems;
-        synchronized (fileSystems)
-        {
-            // create snapshot under lock
-            abstractFileSystems = fileSystems.values().toArray(EMPTY_ABSTRACTFILESYSTEMS);
-        }
-
-        // process snapshot outside lock
-        for (final AbstractFileSystem fs : abstractFileSystems)
+        for (final AbstractFileSystem fs : fileSystems.values().toArray(EMPTY_ABSTRACTFILESYSTEMS))
         {
             if (fs.isReleaseable())
             {
@@ -176,10 +159,7 @@ public abstract class AbstractFileProvider
         final FileSystemKey key = fs.getCacheKey();
         if (key != null)
         {
-            synchronized (fileSystems)
-            {
-                fileSystems.remove(key);
-            }
+            fileSystems.remove(key);
         }
 
         removeComponent(fs);
