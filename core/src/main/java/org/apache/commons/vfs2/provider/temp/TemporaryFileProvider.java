@@ -117,7 +117,7 @@ public class TemporaryFileProvider
             // final FileName rootName =
             //    new LocalFileName(scheme, scheme + ":", FileName.ROOT_PATH);
             filesystem = new LocalFileSystem(rootName, rootFile.getAbsolutePath(), properties);
-            addFileSystem(this, filesystem);
+            addFileSystem(this, filesystem, properties);
         }
 
         // Find the file

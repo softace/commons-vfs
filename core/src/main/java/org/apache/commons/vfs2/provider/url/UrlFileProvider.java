@@ -81,7 +81,7 @@ public class UrlFileProvider
                 // final FileName rootName =
                 //    new BasicFileName(rootUrl, FileName.ROOT_PATH);
                 fs = new UrlFileSystem(rootName, fileSystemOptions);
-                addFileSystem(key, fs);
+                addFileSystem(key, fs, fileSystemOptions);
             }
             return fs.resolveFile(url.getPath());
         }

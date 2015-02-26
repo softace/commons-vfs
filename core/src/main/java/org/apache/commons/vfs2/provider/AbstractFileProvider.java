@@ -98,13 +98,13 @@ public abstract class AbstractFileProvider
      * @param fs the file system to add.
      * @throws FileSystemException if any error occurs.
      */
-    protected void addFileSystem(final Comparable<?> key, final FileSystem fs)
+    protected void addFileSystem(final Comparable<?> key, final FileSystem fs, final FileSystemOptions fileSystemOptions)
         throws FileSystemException
     {
         // Add to the container and initialize
         addComponent(fs);
 
-        final FileSystemKey treeKey = new FileSystemKey(key, fs.getFileSystemOptions());
+        final FileSystemKey treeKey = new FileSystemKey(key, fileSystemOptions);
         ((AbstractFileSystem) fs).setCacheKey(treeKey);
 
         fileSystems.put(treeKey, fs);

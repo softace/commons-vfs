@@ -85,7 +85,7 @@ public abstract class AbstractLayeredFileProvider
         {
             // Create the file system
             fs = doCreateFileSystem(scheme, file, fileSystemOptions);
-            addFileSystem(rootName, fs);
+            addFileSystem(rootName, fs, fileSystemOptions);
         }
         return fs.getRoot();
     }
