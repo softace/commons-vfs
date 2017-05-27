@@ -16,6 +16,8 @@
  */
 package org.apache.commons.vfs2.provider;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -139,7 +141,23 @@ public abstract class AbstractFileProvider
      */
     public void freeUnusedResources()
     {
-        for (final AbstractFileSystem fs : fileSystems.values().toArray(EMPTY_ABSTRACTFILESYSTEMS))
+        List<AbstractFileSystem> copy = new LinkedList<AbstractFileSystem>();
+
+        // FIXME not really clean solution but easy to do
+        for (FileSystem fs : fileSystems.values())
+        {
+            try
+            {
+                copy.add((AbstractFileSystem) fs);
+            }
+            catch (ClassCastException e)
+            {
+                // Skip not AbstractFileSystem
+            }
+        }
+
+        // process snapshot outside lock
+        for (final AbstractFileSystem fs : copy)
         {
             if (fs.isReleaseable())
             {
